@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laradevsbd\Zkteco\Http\Library\ZktecoLib;
- 
+
 class TestController extends Controller
 {
- 
+
 
     public function cdata(Request $request)
     {
@@ -26,24 +26,25 @@ class TestController extends Controller
     public function test()
     {
 
-        $zk = new ZktecoLib('192.168.10.23');
+        $zk = new ZktecoLib('103.30.31.251');
 
         $zk->connect();
 
         $users = $zk->getUser();
-        $attendance = $zk->getAttendance(); 
+        $zk->pinWidth();
+        $attendance = $zk->getAttendance();
 
         $zk->disconnect();
 
-        // echo "Users List: ". count($users)." <br> ";
-        // foreach ($users as $user) {
-        //     echo "ID: " . $user[0] . "<br>";
-        //     echo "Name: " . $user[1] . "<br>";
-        //     echo "Card Number: " . $user[2] . "<br>";
-        //     echo "Privilege: " . $user[3] . "<br>";
-        //     echo "Password: " . $user[4] . "<br>";
-        //     echo "------------------------<br>";
-        // }
+        echo "Users List: ". count($users)." <br> ";
+        foreach ($users as $user) {
+            echo "ID: " . $user[0] . "<br>";
+            echo "Name: " . $user[1] . "<br>";
+            echo "Card Number: " . $user[2] . "<br>";
+            echo "Privilege: " . $user[3] . "<br>";
+            echo "Password: " . $user[4] . "<br>";
+            echo "------------------------<br>";
+        }
 
 
         $userMap = [];
