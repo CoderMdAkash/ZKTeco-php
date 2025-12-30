@@ -1,5 +1,5 @@
 <?php
-require_once 'Library/ZKLib.php';
+require_once __DIR__ . '/Library/ZKLib.php';
 
 class ZKTecoClient
 {
@@ -8,12 +8,7 @@ class ZKTecoClient
 
     public function __construct($ip, $port=4370)
     {
-        try {
-            $this->zk = new ZKLib($ip, $port);
-            $this->zk->connect();
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->zk = new ZKLib($ip, $port);
     }
 
     /**

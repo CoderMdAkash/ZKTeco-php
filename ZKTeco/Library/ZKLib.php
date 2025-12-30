@@ -10,7 +10,7 @@ class ZKLib
     public $session_id = 0;
     public $userdata = array();
     public $attendancedata = array();
-    public $timeout_sec = 60; //5
+    public $timeout_sec = 5; //5
     public $timeout_usec = 5000000;
     public function __construct($ip, $port)
     {
@@ -21,20 +21,20 @@ class ZKLib
         $this->setTimeout($this->timeout_sec, $this->timeout_usec);
         // socket_set_option($this->zkclient, SOL_SOCKET, SO_RCVTIMEO, $timeout);
 
-        include_once("zkconst.php");
-        include_once("zkconnect.php");
-        include_once("zkversion.php");
-        include_once("zkos.php");
-        include_once("zkplatform.php");
-        include_once("zkworkcode.php");
-        include_once("zkssr.php");
-        include_once("zkpin.php");
-        include_once("zkface.php");
-        include_once("zkserialnumber.php");
-        include_once("zkdevice.php");
-        include_once("zkuser.php");
-        include_once("zkattendance.php");
-        include_once("zktime.php");
+        include_once(__DIR__ . "/zkconst.php");
+        include_once(__DIR__ . "/zkconnect.php");
+        include_once(__DIR__ . "/zkversion.php");
+        include_once(__DIR__ . "/zkos.php");
+        include_once(__DIR__ . "/zkplatform.php");
+        include_once(__DIR__ . "/zkworkcode.php");
+        include_once(__DIR__ . "/zkssr.php");
+        include_once(__DIR__ . "/zkpin.php");
+        include_once(__DIR__ . "/zkface.php");
+        include_once(__DIR__ . "/zkserialnumber.php");
+        include_once(__DIR__ . "/zkdevice.php");
+        include_once(__DIR__ . "/zkuser.php");
+        include_once(__DIR__ . "/zkattendance.php");
+        include_once(__DIR__ . "/zktime.php");
     }
 
 
@@ -128,7 +128,7 @@ class ZKLib
             $this->timeout_usec = $usec;
         }
         $timeout = array('sec' => $this->timeout_sec, 'usec' => $this->timeout_usec);
-        // socket_set_option($this->zkclient, SOL_SOCKET, SO_RCVTIMEO, $timeout);
+        socket_set_option($this->zkclient, SOL_SOCKET, SO_RCVTIMEO, $timeout);
     }
 
     public function ping($timeout = 1)
